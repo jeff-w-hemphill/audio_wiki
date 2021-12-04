@@ -1,0 +1,23 @@
+{
+  "name": "individualprojects_setc-jeff-w-hemphill",
+  "version": "1.0.0",
+  "description": "IndividualProjectsSetC",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CU-CSCI-3308-Fall-2021/individualprojects_setc-jeff-w-hemphill.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CU-CSCI-3308-Fall-2021/individualprojects_setc-jeff-w-hemphill/issues"
+  },
+  "homepage": "https://github.com/CU-CSCI-3308-Fall-2021/individualprojects_setc-jeff-w-hemphill#readme"
+}
