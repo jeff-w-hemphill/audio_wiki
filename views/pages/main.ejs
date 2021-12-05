@@ -1,0 +1,41 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/menu'); -%>
+<body>
+  <main>
+    <div class="p-3 mb-2 bg-dark text-white" >
+      <div class="container-fluid" style="padding: 2%; ">
+        <form class="" action="/get_feed" method="post">
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-5">
+              <input class="form-control" type="text" name="title" placeholder="Enter Artist's Name">
+            </div>
+            <div class="col-1">
+              <input class="btn btn-light" type="submit" name="Submit" value = "Submit"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container-lg" style="margin-top: 2%;">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Banner</h1>
+          <img src="" />
+        </div>
+      </div>
+        
+      <div>
+        <h1>Artist Name</h1>
+        <button type="button" class="btn btn-primary" style="margin:5px;">Artist Website</button><button type="button" class="btn btn-primary" style="margin:5px;">Add Review</button>
+        <h3>Formation Year</h3>
+        <p>1996</p>
+        <h3>Genres</h3>
+        <p>Alternative Rock</p>
+        <h3>Bio</h3>
+        <p>Lorem epsom</p>
+      </div>
+    </div>
+
+  </main>
+<%- include('../partials/footer'); -%>
