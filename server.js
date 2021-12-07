@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
           year = items.data.artists[0].intFormedYear
           genres = items.data.artists[0].strGenre
           bio = items.data.artists[0].strBiographyEN
-          console.log(website)
+ 
           res.render('pages/main', { 
             artistName: artistName,
             banner: banner,
@@ -47,20 +47,30 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  res.render('pages/main', { artist: 'someone'})
-  //let artist = req.body.artist
-  let artist = 0
-  if(0) {
+    let artist = req.body.artist
     axios({
-      url: `https://www.theaudiodb.com/api/v1/json/2/search.php?s=black`,
+      url: `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artist}`,
         method: 'GET',
         dataType:'json',
       })
       .then(items => {
-          //console.log(items);
-          artist = items.data.artists[0].strArtist
-          console.log(artist)
-          //res.render('pages/main', { artist: artist } )
+          console.log(`Loading ${artist}`)
+          artistName = items.data.artists[0].strArtist
+          banner = items.data.artists[0].strArtistBanner
+          website = items.data.artists[0].strWebsite
+          year = items.data.artists[0].intFormedYear
+          genres = items.data.artists[0].strGenre
+          bio = items.data.artists[0].strBiographyEN
+  
+          res.render('pages/main', { 
+            artistName: artistName,
+            banner: banner,
+            website: website,
+            year: year,
+            genres: genres,
+            bio: bio
+           } )
+           console.log('Done')
         })
         .catch(error => {
           if (error.response) {
@@ -68,8 +78,6 @@ app.post('/', function(req, res) {
             console.log(error.response.status);
           }
         });
-  }
-  
 })
 
 app.get('/reviews', function(req, res) {
