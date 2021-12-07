@@ -24,10 +24,11 @@
           
         </div>
       </div>
-        
+      
       <div>
         <h1><%= artistName %></h1>
-        <button type="button" class="btn btn-primary" style="margin:5px;">Artist Website</button>
+        <% let url = "https://" + website %>
+        <a href=<%= url %> > <button type="button" class="btn btn-primary" style="margin:5px;">Artist Website</button></a>
         <button type="button" class="btn btn-primary" style="margin:5px;">Add Review</button><br><br>
         <h3>Formation Year</h3>
         <p><%= year %></p>

@@ -72,7 +72,7 @@ app.post('/', function(req, res) {
             genres = '-'
             bio = '-'
           }
-          
+          console.log(website)
     
           res.render('pages/main', { 
             artistName: artistName,
