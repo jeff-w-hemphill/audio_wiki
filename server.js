@@ -14,13 +14,63 @@ app.use(express.static(__dirname + '/'));// Set the relative path; makes accessi
 
 // Home page - DON'T CHANGE
 app.get('/', function(req, res) {
-  res.render('pages/main', {
-    my_title: "home",
-    items: '',
-    error: false,
-    message: ''
-  });
+    axios({
+      url: `https://www.theaudiodb.com/api/v1/json/2/search.php?s=red_hot_chili_peppers`,
+        method: 'GET',
+        dataType:'json',
+      })
+      .then(items => {
+          console.log("Loading RHCP")
+          artistName = items.data.artists[0].strArtist
+          banner = items.data.artists[0].strArtistBanner
+          website = items.data.artists[0].strWebsite
+          year = items.data.artists[0].intFormedYear
+          genres = items.data.artists[0].strGenre
+          bio = items.data.artists[0].strBiographyEN
+          console.log(website)
+          res.render('pages/main', { 
+            artistName: artistName,
+            banner: banner,
+            website: website,
+            year: year,
+            genres: genres,
+            bio: bio
+           } )
+           console.log('Done')
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+          }
+        });
 });
+
+app.post('/', function(req, res) {
+  res.render('pages/main', { artist: 'someone'})
+  //let artist = req.body.artist
+  let artist = 0
+  if(0) {
+    axios({
+      url: `https://www.theaudiodb.com/api/v1/json/2/search.php?s=black`,
+        method: 'GET',
+        dataType:'json',
+      })
+      .then(items => {
+          //console.log(items);
+          artist = items.data.artists[0].strArtist
+          console.log(artist)
+          //res.render('pages/main', { artist: artist } )
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+          }
+        });
+  }
+  
+})
 
 app.get('/reviews', function(req, res) {
   res.render('pages/reviews', {
