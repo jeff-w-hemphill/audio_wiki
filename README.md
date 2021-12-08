@@ -1,8 +1,8 @@
 # IndividualProjectsSetC
 ## Start the project
 
-./start
+```./start
 
 or you can run:
 
-docker-compose up
+```docker-compose up
