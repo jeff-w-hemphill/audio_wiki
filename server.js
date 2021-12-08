@@ -56,12 +56,12 @@ app.post('/', function(req, res) {
       .then(items => {
           console.log(`Loading ${artist}`)
           if (items.data.artists != null) {
-          artistName = items.data.artists[0].strArtist
-          banner = items.data.artists[0].strArtistBanner
-          website = items.data.artists[0].strWebsite
-          year = items.data.artists[0].intFormedYear
-          genres = items.data.artists[0].strGenre
-          bio = items.data.artists[0].strBiographyEN
+            artistName = items.data.artists[0].strArtist
+            banner = items.data.artists[0].strArtistBanner
+            website = items.data.artists[0].strWebsite
+            year = items.data.artists[0].intFormedYear
+            genres = items.data.artists[0].strGenre
+            bio = items.data.artists[0].strBiographyEN
           } else {
             console.log('error, no matching artist')
 
@@ -102,7 +102,12 @@ app.get('/reviews', function(req, res) {
 })
 
 app.put('/reviews', function(req, res) {
-
+  res.render('pages/reviews', {
+    my_title: "reviews",
+    items: '',
+    error: false,
+    message: ''
+  })
 })
 
 app.listen(3000);

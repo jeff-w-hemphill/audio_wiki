@@ -29,7 +29,40 @@
         <h1><%= artistName %></h1>
         <% let url = "https://" + website %>
         <a href=<%= url %> > <button type="button" class="btn btn-primary" style="margin:5px;">Artist Website</button></a>
-        <button type="button" class="btn btn-primary" style="margin:5px;">Add Review</button><br><br>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Add Review
+        </button><br><br><br>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action="/reviews" method="put">  
+                <div class="modal-body">
+                
+                  <lable for="book-name">Artist</lable><br>
+                  <input type="text" class="form-control" id="book-name" value="<%= artistName %>" readonly><br>
+                  <label for="review-text" class="col-form-label">Review</label>
+                  <textarea class="form-control" id="review-text"></textarea>
+                
+                </div>
+                
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <h3>Formation Year</h3>
         <p><%= year %></p>
         <h3>Genres</h3>
