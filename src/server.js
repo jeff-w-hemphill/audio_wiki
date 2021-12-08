@@ -1,6 +1,7 @@
 // Load the modules
 var express = require('express'); //Express - a web application framework that provides useful utility functions like 'http'
 var app = express();
+var path = require('path');
 var bodyParser = require('body-parser'); // Body-parser -- a library that provides functions for parsing incoming requests
 app.use(bodyParser.json());              // Support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Support encoded bodies
@@ -8,9 +9,10 @@ const axios = require('axios');
 const qs = require('query-string');
 
 // Set the view engine to ejs
+app.set('views', path.join(__dirname, '/views')); // Sets the view path since I added a src folder. App cannot find views path without this
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/'));// Set the relative path; makes accessing the resource directory easier
-
+console.log(__dirname)
 
 // Home page - DON'T CHANGE
 app.get('/', function(req, res) {
