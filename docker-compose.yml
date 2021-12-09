@@ -20,7 +20,7 @@ services:
     env_file: .env
     volumes:
       - ./db/init_data:/docker-entrypoint-initdb.d
-      - finalProject-db-volume:/var/lib/postgresql/data  
+      - db-volume:/var/lib/postgresql/data  
 
   web:
     build: 
@@ -36,4 +36,4 @@ services:
       - ./src:/app/src
 
 volumes:
-  finalProject-db-volume: {}
+  db-volume: {}

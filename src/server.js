@@ -136,14 +136,34 @@ app.get('/reviews', function(req, res) {
         })
 })
 
-app.put('/reviews', function(req, res) {
-  res.render('pages/reviews', {
-    my_title: "reviews",
-    items: '',
-    error: false,
-    message: ''
-  })
+app.post('/reviews', function(req, res) {
+    //Create date for database insert
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    let formattedDate = year + '-' + month + '-' + day
+
+    let insertQuery = `INSERT INTO reviews(artist, review, review_date) VALUES ('${req.body.artist}','${req.body.review}','${formattedDate}');`
+    let query = 'select * from reviews;';
+
+    db.any(insertQuery)
+    .then(db.any(query)
+    .then(function(rows) {
+      //console.log(rows)
+      res.render('pages/reviews',{
+      rows: rows
+      })
+    })
+    .catch(function (err) {
+        console.log('error', err);
+        res.render('pages/reviews', {
+            rows: rows
+        })
+    }))
+  
 })
+
 
 app.listen(3000);
 console.log('listening on port 3000');
