@@ -1,17 +1,17 @@
 <%- include('../partials/header'); -%>
 <%- include('../partials/menu'); -%>
 
-<form class="" action="/get_feed" method="post">
+<form class="" action="/reviews/filter" method="post">
     <div style="text-align: center; margin: 20px;">
         <h1>Artist reviews</h1>
     </div>
     <div class="row">
       <div class="col-3"></div>
       <div class="col-5">
-        <input class="form-control" type="text" name="title" placeholder="Enter Artist's Name">
+        <input class="form-control" for="submit" type="text" name="filter" placeholder="Enter Artist's Name">
       </div>
       <div class="col-1">
-        <input class="btn btn-primary" type="submit" name="Filter" value = "Filter"/>
+        <input class="btn btn-primary" type="submit" name="submit"/>
       </div>
     </div>
   </form>

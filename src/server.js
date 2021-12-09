@@ -129,9 +129,8 @@ app.get('/reviews', function(req, res) {
         })
         .catch(function (err) {
             console.log('error', err);
-            res.render('pages/home', {
-                my_title: 'Home Page',
-                data: ''
+            res.render('pages/reviews', {
+                rows: rows
             })
         })
 })
@@ -145,7 +144,7 @@ app.post('/reviews', function(req, res) {
     let formattedDate = year + '-' + month + '-' + day
 
     let insertQuery = `INSERT INTO reviews(artist, review, review_date) VALUES ('${req.body.artist}','${req.body.review}','${formattedDate}');`
-    let query = 'select * from reviews;';
+    let query = 'SELECT * FROM reviews;';
 
     db.any(insertQuery)
     .then(db.any(query)
@@ -164,6 +163,26 @@ app.post('/reviews', function(req, res) {
   
 })
 
+app.post('/reviews/filter', function(req, res) {
+  let artist = req.body.filter.toLowerCase();
+  let query = `SELECT * FROM reviews WHERE lower(artist) = '${artist}'`
+  console.log(query)
+
+  db.any(query)
+  .then(function (rows) {
+    console.log(rows)
+    res.render('pages/reviews',{
+    rows: rows
+})
+
+  })
+  .catch(function (err) {
+      console.log('error', err);
+      res.render('pages/reviews', {
+          rows: rows
+      })
+  })
+})
 
 app.listen(3000);
 console.log('listening on port 3000');
