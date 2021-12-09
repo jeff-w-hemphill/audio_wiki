@@ -14,7 +14,30 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/'));// Set the relative path; makes accessing the resource directory easier
 console.log(__dirname)
 
-// Home page - DON'T CHANGE
+//Create Database Connection
+var pgp = require('pg-promise')();
+
+const dev_dbConfig = {
+	host: 'db',
+	port: 5432,
+	database: process.env.POSTGRES_DB,
+	user:  process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD
+};
+
+/** If we're running in production mode (on heroku), the we use DATABASE_URL
+ * to connect to Heroku Postgres.
+ */
+const isProduction = process.env.NODE_ENV === 'production';
+const dbConfig = isProduction ? process.env.DATABASE_URL : dev_dbConfig;
+
+// Heroku Postgres patch for v10
+// fixes: https://github.com/vitaly-t/pg-promise/issues/711
+if (isProduction) {
+  pgp.pg.defaults.ssl = {rejectUnauthorized: false};
+}
+
+const db = pgp(dbConfig);
 app.get('/', function(req, res) {
     axios({
       url: `https://www.theaudiodb.com/api/v1/json/2/search.php?s=red_hot_chili_peppers`,
@@ -95,12 +118,22 @@ app.post('/', function(req, res) {
 })
 
 app.get('/reviews', function(req, res) {
-  res.render('pages/reviews', {
-    my_title: "reviews",
-    items: '',
-    error: false,
-    message: ''
-  })
+  let query = 'select * from reviews;';
+	db.any(query)
+        .then(function (rows) {
+          console.log(rows)
+          res.render('pages/reviews',{
+				  rows: rows
+			})
+
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('pages/home', {
+                my_title: 'Home Page',
+                data: ''
+            })
+        })
 })
 
 app.put('/reviews', function(req, res) {

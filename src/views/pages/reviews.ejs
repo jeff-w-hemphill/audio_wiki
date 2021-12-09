@@ -25,11 +25,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
+      <%
+      if (rows) {
+        let table = '';
+        rows.forEach(function(row) {
+          table += '<tr> <td>' + row.artist + '</td> <td>' + row.review + '</td> <td>' + row.review_date + '</td>';
+        }); %>
+      <%- table %>
+      <% } %>
     </tbody>
   </table>
 </div>
