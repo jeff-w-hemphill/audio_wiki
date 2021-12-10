@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "IndividualProjectsSetC",
   "main": "server.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "testandrun": "npm-run-all test dev"
   },
   "repository": {
     "type": "git",
@@ -25,7 +23,11 @@
     "query-string": "^6.14.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5"
   },
   "bugs": {
     "url": "https://github.com/CU-CSCI-3308-Fall-2021/individualprojects_setc-jeff-w-hemphill/issues"

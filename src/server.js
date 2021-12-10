@@ -12,7 +12,7 @@ const qs = require('query-string');
 app.set('views', path.join(__dirname, '/views')); // Sets the view path since I added a src folder. App cannot find views path without this
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/'));// Set the relative path; makes accessing the resource directory easier
-console.log(__dirname)
+
 
 //Create Database Connection
 var pgp = require('pg-promise')();
@@ -121,7 +121,6 @@ app.get('/reviews', function(req, res) {
   let query = 'select * from reviews;';
 	db.any(query)
         .then(function (rows) {
-          console.log(rows)
           res.render('pages/reviews',{
 				  rows: rows
 			})
@@ -187,4 +186,5 @@ app.post('/reviews/filter', function(req, res) {
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
-console.log('listening on port 3000');
+
+module.exports = server

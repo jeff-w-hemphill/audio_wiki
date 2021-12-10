@@ -48,7 +48,7 @@ RUN mkdir /app/src
 USER node
 WORKDIR /app
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "testandrun"]
 
 # ------------------------------------------------------------------------------
 # Setup production target (/prodapp)

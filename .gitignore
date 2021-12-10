@@ -1,3 +1,4 @@
 # ignore node_modules.
 node_modules/
-heroku/.env
+heroku/**
+package-lock.json
