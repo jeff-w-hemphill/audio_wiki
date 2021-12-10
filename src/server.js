@@ -184,5 +184,7 @@ app.post('/reviews/filter', function(req, res) {
   })
 })
 
-app.listen(3000);
+const server = app.listen(process.env.PORT || 3000, () => {
+  console.log(`Express running → PORT ${server.address().port}`);
+});
 console.log('listening on port 3000');
