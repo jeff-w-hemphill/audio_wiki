@@ -7,7 +7,7 @@ or you can run:
 
 ```docker-compose up```
 
-The app will be running at http://localhost:3000 
+The app will be running at http://localhost:3000 <br>
 No need to seed the database manually, docker takes care of it when building
 
 ## Public link to production app
