@@ -1,4 +1,4 @@
-# IndividualProjectsSetC
+# Music artist Wiki
 ## Start the project
 
 ```./start```
